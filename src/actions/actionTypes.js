@@ -1,0 +1,6 @@
+export default {
+  SEND_MESSAGE: 'server/SEND_MESSAGE',
+  RECEIVE_MESSAGES: 'RECEIVE_MESSAGES',
+  TYPING: 'server/TYPING',
+  GET_TYPER: 'GET_TYPER'
+};
