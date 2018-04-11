@@ -1,12 +1,7 @@
 import types from '../actions/actionTypes';
 
 const initialState = {
-  messages: [
-    {
-      user: "Tim!",
-      message: 'This is a message'
-    }
-  ],
+  messages: [],
   typing : ""
 };
 
@@ -22,13 +17,6 @@ export default (state = initialState, action = {}) => {
            }
          ]
        });
-     case types.GET_TYPER:
-       return Object.assign({}, state, {
-          messages: [
-            ...state.messages
-          ],
-          typing:action.data.user
-        });
     default:
       return state;
   }
