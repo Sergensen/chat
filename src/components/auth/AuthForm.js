@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Divider } from 'semantic-ui-react';
+import { Form, Button, Divider, Grid } from 'semantic-ui-react';
 
 export default class AuthForm extends Component {
   constructor(props){
@@ -23,19 +23,30 @@ export default class AuthForm extends Component {
     }
   }
 
-  loginWithGoogle(){
+  signinGoogle(){
     this.props.signinGoogle();
+  }
+
+  signinFacebook(){
+    this.props.signinFacebook();
+  }
+
+  getSignInButtons(){
+    return (
+      <Grid stackable>
+        <Grid.Column width="8">
+          <Button style={{width:"100%"}} onClick={this.signinGoogle.bind(this)} color="red" icon="google" />
+        </Grid.Column>
+        <Grid.Column width="8">
+          <Button style={{width:"100%"}} onClick={this.signinFacebook.bind(this)} color="blue" icon="facebook square" />
+        </Grid.Column>
+      </Grid>
+    );
   }
 
   render() {
     const { signin } = this.state;
-    const confirmButton = signin?
-      <Button
-        style={{width:"100%"}}
-        onClick={this.loginWithGoogle.bind(this)}>
-        Sign in with google
-      </Button>
-    :
+    const confirmButton = signin?this.getSignInButtons():
       <Form.Input
       type="password"
       onKeyDown={this.sendData.bind(this)}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Grid, Label } from 'semantic-ui-react';
+import { Form, Button, Grid } from 'semantic-ui-react';
 
 export default class UserInput extends Component {
   constructor(props){
@@ -20,7 +20,7 @@ export default class UserInput extends Component {
   send = () => {
     const { message } = this.state;
     const { user, sendMessage } = this.props;
-    if(message) sendMessage(user.displayName, message);
+    if(message) sendMessage(user.displayName, message, user.photoURL);
     this.setState({message: ""});
   }
 
@@ -30,17 +30,14 @@ export default class UserInput extends Component {
 
   render() {
     return (
-        <Form>
+        <Form style={{height:"20vh"}}>
           <Form.Field>
             <Grid stackable>
-              <Grid.Column width="3">
-                <Button type="button" style={{width:"100%"}} color="red" onClick={this.signOut.bind(this)}>Logout</Button>
-              </Grid.Column>
-              <Grid.Column width="3">
-                <Label as='a' style={{width:"100%", height:35.6}} content={this.props.user.displayName} />
-              </Grid.Column>
-              <Grid.Column width="10">
+              <Grid.Column width="16">
                 <input placeholder='Type your message here ...' id="message" value={this.state.message} onChange={this.onChange.bind(this)} onKeyDown={this.onKeyDown} />
+              </Grid.Column>
+              <Grid.Column width="16">
+                <Button type="button" style={{width:"100%"}} color="red" onClick={this.signOut.bind(this)}>Logout</Button>
               </Grid.Column>
             </Grid>
           </Form.Field>

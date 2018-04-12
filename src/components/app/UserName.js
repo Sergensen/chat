@@ -11,7 +11,10 @@ export default class UserName extends Component {
 
   onKeyDown = (e) => {
     const { name } = this.state;
-    if(name && e.keyCode===13) this.props.setUserName(name);
+    if(name && e.key==="Enter"){
+      this.props.setUserName(name);
+      window.location.reload();
+    }
   }
 
   onChange = (e) => {

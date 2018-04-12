@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import AuthForm from '../components/auth/AuthForm';
 import { auth } from '../Firebase';
-import { Dimmer, Loader, Modal, Button, Input } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 class Authenticate extends Component {
   constructor(props){
@@ -15,10 +15,14 @@ class Authenticate extends Component {
   }
 
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
+    this.unsubscribe = auth.onAuthStateChanged(user => {
       this.setState({dimmer:false});
       this.props.getUser(user);
     });
+  }
+
+  componentWillUnmount(){
+    this.unsubscribe();
   }
 
   componentDidUpdate(){
@@ -26,13 +30,13 @@ class Authenticate extends Component {
   }
 
   render() {
-    const { user, signin, signup, signinGoogle } = this.props;
+    const { user, signin, signup, signinGoogle, signinFacebook } = this.props;
     return (
       <div>
         <Dimmer active={this.state.dimmer}>
           <Loader />
         </Dimmer>
-        <AuthForm user={user} signinGoogle={signinGoogle} signin={signin} signup={signup} />
+        <AuthForm user={user} signinFacebook={signinFacebook} signinGoogle={signinGoogle} signin={signin} signup={signup} />
       </div>
     );
   }

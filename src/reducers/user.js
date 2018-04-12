@@ -1,5 +1,5 @@
 import types from '../actions/actionTypes';
-import { auth, googleProvider } from '../Firebase';
+import { auth, googleProvider, facebookProvider } from '../Firebase';
 
 export default (state = {}, action = {}) => {
   const { email, password } = action;
@@ -22,6 +22,9 @@ export default (state = {}, action = {}) => {
       return Object.assign({}, state);
     case types.SIGNGOOGLE:
       auth.signInWithPopup(googleProvider);
+      return Object.assign({}, state);
+    case types.SIGNFACEBOOK:
+      auth.signInWithPopup(facebookProvider);
       return Object.assign({}, state);
     case types.SIGNUP:
       auth.createUserWithEmailAndPassword(email, password);

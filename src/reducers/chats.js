@@ -1,8 +1,7 @@
 import types from '../actions/actionTypes';
 
 const initialState = {
-  messages: [],
-  typing : ""
+  messages: []
 };
 
 export default (state = initialState, action = {}) => {
@@ -13,7 +12,8 @@ export default (state = initialState, action = {}) => {
            ...state.messages,
            {
              user: action.data.user,
-             message: action.data.message
+             message: action.data.message,
+             url: action.data.url
            }
          ]
        });

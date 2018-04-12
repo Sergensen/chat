@@ -20,12 +20,10 @@ class App extends Component {
 
   render() {
     const { user, chats, sendMessage, setUserName } = this.props;
-    console.log(user);
-
     const app = (
-      <div>
-        <UserInput signOut={this.logout.bind(this)} user={user} sendMessage={sendMessage} />
+      <div style={{height:"100vh"}}>
         <Messages chats={chats.messages} />
+        <UserInput signOut={this.logout.bind(this)} user={user} sendMessage={sendMessage} />
       </div>
     );
     return user.displayName?app:<UserName setUserName={setUserName} />;
