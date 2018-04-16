@@ -29,7 +29,7 @@ export default class UserInput extends Component {
   }
 
   render() {
-    const { signOut } = this.props;
+    const { signOut, user } = this.props;
     return (
         <Form style={{height:"20vh"}}>
           <Form.Field>
@@ -38,7 +38,7 @@ export default class UserInput extends Component {
                 <input placeholder='Type your message here ...' id="message" value={this.state.message} onChange={this.onChange.bind(this)} onKeyDown={this.onKeyDown} />
               </Grid.Column>
               <Grid.Column width="16">
-                <Menu signOut={signOut} />
+                <Menu user={user} signOut={signOut} />
               </Grid.Column>
             </Grid>
           </Form.Field>
