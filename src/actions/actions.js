@@ -1,12 +1,5 @@
 import types from './actionTypes';
 
-export const sendMessage = (user, message, url) => ({
-  type: types.SEND_MESSAGE,
-  user,
-  message,
-  url,
-});
-
 export const logout = () => ({
   type: types.LOGOUT,
 })
@@ -25,6 +18,17 @@ export const signin = (email, password) => ({
   type: types.SIGNIN,
   email,
   password,
+});
+
+export const writeMessage = (id, message) => ({
+  type: types.WRITE_MESSAGE,
+  id,
+  message
+});
+
+export const createUser = (user) => ({
+  type: types.CREATE_USER,
+  user
 });
 
 export const signinFacebook = () => ({

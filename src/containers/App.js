@@ -19,11 +19,11 @@ class App extends Component {
   }
 
   render() {
-    const { user, chats, sendMessage, setUserName } = this.props;
+    const { user, sendMessage, setUserName, createUser, writeMessage } = this.props;
     const app = (
       <div style={{height:"100vh"}}>
-        <Messages chats={chats.messages} />
-        <UserInput signOut={this.logout.bind(this)} user={user} sendMessage={sendMessage} />
+        <Messages createUser={createUser} user={user} />
+        <UserInput writeMessage={writeMessage} signOut={this.logout.bind(this)} user={user} sendMessage={sendMessage} />
       </div>
     );
     return user.displayName?app:<UserName setUserName={setUserName} />;
@@ -35,7 +35,6 @@ let form = reduxForm({
 })(App);
 
 form = connect((state, ownProps) => ({
-    chats: state.chats,
     user: state.user
   }), actions
 )(form);

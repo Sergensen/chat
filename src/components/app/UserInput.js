@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Grid } from 'semantic-ui-react';
+import Menu from './Menu';
 
 export default class UserInput extends Component {
   constructor(props){
@@ -14,13 +15,12 @@ export default class UserInput extends Component {
   }
 
   onKeyDown = (e) => {
-    if(e.keyCode===13) this.send();
+    if(e.keyCode===13) this.writeMessage();
   }
 
-  send = () => {
-    const { message } = this.state;
-    const { user, sendMessage } = this.props;
-    if(message) sendMessage(user.displayName, message, user.photoURL);
+  writeMessage(){
+    const { user, writeMessage } = this.props;
+    writeMessage(user.uid, this.state.message);
     this.setState({message: ""});
   }
 
@@ -29,6 +29,7 @@ export default class UserInput extends Component {
   }
 
   render() {
+    const { signOut } = this.props;
     return (
         <Form style={{height:"20vh"}}>
           <Form.Field>
@@ -37,7 +38,7 @@ export default class UserInput extends Component {
                 <input placeholder='Type your message here ...' id="message" value={this.state.message} onChange={this.onChange.bind(this)} onKeyDown={this.onKeyDown} />
               </Grid.Column>
               <Grid.Column width="16">
-                <Button type="button" style={{width:"100%"}} color="red" onClick={this.signOut.bind(this)}>Logout</Button>
+                <Menu signOut={signOut} />
               </Grid.Column>
             </Grid>
           </Form.Field>
