@@ -26,6 +26,8 @@ export default class Messages extends Component {
   }
   render() {
     const { messages, users } = this.state;
+    const keys = Object.keys(messages);
+    const lastKey = keys[keys.length-1];
     let output = [];
     for(let key in messages){
       const pic = (users[messages[key].uid].url?
@@ -34,7 +36,7 @@ export default class Messages extends Component {
         <Icon name="user" size="large" />
       );
       output.push(
-        <List.Item style={{background:"linear-gradient(#ddffe3, white)"}} key={Math.random()}>
+        <List.Item style={{background:key===lastKey?"linear-gradient(#ddffe3, white)":"white"}} key={Math.random()}>
           {pic}
           <List.Content>
             <List.Header as='a'>{users[messages[key].uid].name}</List.Header>

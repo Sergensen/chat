@@ -15,7 +15,7 @@ export default class UserInput extends Component {
   }
 
   onKeyDown = (e) => {
-    if(e.keyCode===13) this.writeMessage();
+    if(e.keyCode===13&&this.state.message) this.writeMessage();
   }
 
   writeMessage(){

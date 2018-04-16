@@ -15,21 +15,19 @@ export default class Menu extends Component {
   signOut(e){
     this.props.signOut();
   }
-  changeName(e) {
-    /*modal for type a new Name and update it*/
-  }
 
-  changePic(e){
+  changeProfile(e){
     /*modal for selecting & uploading a profile pic*/
   }
 
   render() {
     return (
       <Grid>
-        <Grid.Column>
+        <Grid.Column width={8}>
           <Button type="button" style={{width:"100%"}} color="red" onClick={this.signOut.bind(this)}>Logout</Button>
-          <Button type="button" style={{width:"100%"}} color="blue" onClick={this.changeName.bind(this)}>Change username</Button>
-          <Button type="button" style={{width:"100%"}} color="blue" onClick={this.changePic.bind(this)}>Change picture</Button>
+        </Grid.Column>
+        <Grid.Column width={8}>
+          <Button type="button" style={{width:"100%"}} color="blue" onClick={this.changeProfile.bind(this)}>Change profile</Button>
         </Grid.Column>
       </Grid>
     );
